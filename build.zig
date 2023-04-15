@@ -58,7 +58,7 @@ pub fn build(b: *std.build.Builder) void {
         "lutf8lib.c",
         "linit.c",
     }, &flags);
-    lib.install();
+    b.installArtifact(lib);
     lib.installHeader("lapi.h", "lapi.h");
     lib.installHeader("lauxlib.h", "lauxlib.h");
     lib.installHeader("lcode.h", "lcode.h");
@@ -98,5 +98,5 @@ pub fn build(b: *std.build.Builder) void {
     }, &flags);
     exe.linkLibrary(lib);
     exe.linkLibC();
-    exe.install();
+    b.installArtifact(exe);
 }
