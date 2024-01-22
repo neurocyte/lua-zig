@@ -1,6 +1,6 @@
 const std = @import("std");
 
-pub fn build(b: *std.build.Builder) void {
+pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
@@ -13,7 +13,7 @@ pub fn build(b: *std.build.Builder) void {
     const flags = [_][]const u8{
         "-std=c99",
 
-        switch (lib.target_info.target.os.tag) {
+        switch (target.result.os.tag) {
             .linux => "-DLUA_USE_LINUX",
             .macos => "-DLUA_USE_MACOSX",
             .windows => "-DLUA_USE_WINDOWS",
